@@ -1,38 +1,41 @@
-pipline {
-    agentany
+pipeline {
+    agent any
+
     stages {
-        stage('pre-build'){
+        stage('pre-build') {
             steps {
                 echo 'pre-build'
             }
         }
 
-        stage ('build'){
+        stage('build') {
             steps {
                 echo 'build_stage'
             }
         }
 
-        stage ('unit_test'){
-            steps{
+        stage('unit_test') {
+            steps {
                 echo 'unit_test'
             }
         }
-        stage ('deploy') {
+
+        stage('deploy') {
             steps {
                 echo 'deploy steps'
             }
         }
 
-        stage ('Regression tests'){
+        stage('regression_tests') {
             steps {
-                echo 'relesing to prod'
+                echo 'releasing to prod'
             }
         }
     }
-post {
-    always{
-        echo 'clean up after everythin'
+
+    post {
+        always {
+            echo 'clean up after everything'
+        }
     }
-  }
 }
