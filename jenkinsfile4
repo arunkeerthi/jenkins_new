@@ -1,0 +1,55 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('pre-build') {
+            steps {
+                echo 'pre-build'
+            }
+        }
+
+        stage('build') {
+            steps {
+                echo 'build_stage'
+            }
+        }
+
+        stage('unit_test') {
+            steps {
+                echo 'unit_test'
+            }
+        }
+
+        stage('deploy') {
+            steps {
+                echo 'deploy steps'
+            }
+        }
+
+        stage('regression_tests') {
+            parallel {
+                stage('dev') {
+                    steps {
+                        echo 'releasing to dev'
+                    }
+                }
+                stage('test') {
+                    steps {
+                        echo 'releasing to test'
+                    }
+                }
+                stage('prod') {
+                    steps {
+                        echo 'releasing to prod'
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'clean up after everything'
+        }
+    }
+}
