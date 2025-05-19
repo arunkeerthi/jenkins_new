@@ -1,0 +1,38 @@
+pipline {
+    agentany
+    stages {
+        stage('pre-build'){
+            steps {
+                echo 'pre-build'
+            }
+        }
+
+        stage ('build'){
+            steps {
+                echo 'build_stage'
+            }
+        }
+
+        stage ('unit_test'){
+            steps{
+                echo 'unit_test'
+            }
+        }
+        stage ('deploy') {
+            steps {
+                echo 'deploy steps'
+            }
+        }
+
+        stage ('Regression tests'){
+            steps {
+                echo 'relesing to prod'
+            }
+        }
+    }
+post {
+    always{
+        echo 'clean up after everythin'
+    }
+  }
+}
